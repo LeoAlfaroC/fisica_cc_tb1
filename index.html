@@ -21,7 +21,7 @@
 
             Masa del paracaidista:
             <input type="text" class="form-control" name="masa" id="masa" value="80.0">
-            
+
             Area transversal del paracaidista:
             <input type="text" class="form-control" name="area" id="area" value="6.00">
 
@@ -35,8 +35,10 @@
             <input type="text" class="form-control" name="altura_inicial" id="altura_inicial" value="3000">
         </div>
 
-        <button type="submit" class="btn btn-primary" id="calcular">Calcular</button>
+        <button type="submit" class="btn btn-primary" id="calcular_caida">Calcular</button>
     </form>
+
+    <br>
 
     <div>
         <table border="1">
@@ -52,8 +54,59 @@
             <tbody id="resultados">
             </tbody>
         </table>
-        
+
     </div>
+
+    <form>
+        <div class="form-group">
+            Posicion inicial:
+            <input type="text" class="form-control" name="posicion_inicial" id="posicion_inicial" value="0.00">
+
+            Rapidez inicial
+            <input type="text" class="form-control" name="rapidez_inicial" id="rapidez_inicial_pro" value="50.00">
+
+            Radio
+            <input type="text" class="form-control" name="radio" id="radio" value="3.66" disabled>
+
+            Coeficiente de resistencia:
+            <input type="text" class="form-control" name="coeficiente" id="coeficiente_pro" value ="0.5">
+
+            Masa:
+            <input type="text" class="form-control" name="masa" id="masa_pro" value="0.145">
+
+            Ángulo de lanzamiento:
+            <input type="text" class="form-control" name="angulo" id="angulo" value="20.0">
+
+            Densidad del aire:
+            <input type="text" class="form-control" name="densidad_aire" id="densidad_aire_pro" value="1.20">
+
+            <label>
+                <input type="radio" name="rozamiento" id="con_rozamiento" value="true"> Con rozamiento
+            </label>
+            <label>
+                <input type="radio" name="rozamiento" id="sin_rozamiento" value="false"> Sin rozamiento
+            </label>
+            <br>
+            <button type="submit" class="btn btn-primary" id="calcular_proyectil">Calcular</button>
+    </form>
+
+    <br>
+    <br>
+
+    <div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>t</th>
+                        <th>posX</th>
+                        <th>posY</th>
+                    </tr>
+                </thead>
+                <tbody id="resultados2">
+                </tbody>
+            </table>
+
+        </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
