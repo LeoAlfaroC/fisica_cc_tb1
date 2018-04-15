@@ -1,118 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
 
     <title>Fisica para CC - Trabajo 1</title>
 </head>
+
 <body>
-<div class="container">
-    <form>
-        <div class="form-group">
-            Coeficiente de resistencia:
-            <input type="text" class="form-control" name="coeficiente" id="coeficiente" value ="1.17">
+    <div class="container">
+        <form>
+            <div class="form-group">
+                Coeficiente de resistencia:
+                <input type="text" class="form-control" name="coeficiente" id="coeficiente" value="1.17"> Densidad del aire:
+                <input type="text" class="form-control" name="densidad_aire" id="densidad_aire" value="1.20"> Masa del paracaidista:
+                <input type="text" class="form-control" name="masa" id="masa" value="80.0"> Area transversal del paracaidista:
+                <input type="text" class="form-control" name="area" id="area" value="6.42"> Rapidez inicial
+                <input type="text" class="form-control" name="rapidez_inicial" id="rapidez_inicial" value="0.44"> Tiempo de apertura del paracaidas:
+                <input type="text" class="form-control" name="tiempo_apertura_paracaidas" id="tiempo_apertura_paracaidas" value="17.31"> Altura inicial:
+                <input type="text" class="form-control" name="altura_inicial" id="altura_inicial" value="3344.84">
+            </div>
 
-            Densidad del aire:
-            <input type="text" class="form-control" name="densidad_aire" id="densidad_aire" value="1.20">
+            <button type="submit" class="btn btn-primary" id="calcular_caida">Calcular</button>
+        </form>
 
-            Masa del paracaidista:
-            <input type="text" class="form-control" name="masa" id="masa" value="80.0">
+        <br>
 
-            Area transversal del paracaidista:
-            <input type="text" class="form-control" name="area" id="area" value="6.00">
+        <div class="row">
+            <div class="col-md-3">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>p</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pvt">
+                    </tbody>
+                </table>
+            </div>
 
-            Rapidez inicial
-            <input type="text" class="form-control" name="rapidez_inicial" id="rapidez_inicial" value="0.00">
+            <div class="col-md-3">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>v</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vvt">
+                    </tbody>
+                </table>
+            </div>
 
-            Tiempo de apertura del paracaidas:
-            <input type="text" class="form-control" name="tiempo_apertura_paracaidas" id="tiempo_apertura_paracaidas" value="15.0">
+            <div class="col-md-3">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>a</th>
+                        </tr>
+                    </thead>
+                    <tbody id="avt">
+                    </tbody>
+                </table>
+            </div>
 
-            Altura inicial:
-            <input type="text" class="form-control" name="altura_inicial" id="altura_inicial" value="3000">
+            <div class="col-md-3">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>f</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fvt">
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" id="calcular_caida">Calcular</button>
-    </form>
+        <form>
+            <div class="form-group">
+                Posicion inicial:
+                <input type="text" class="form-control" name="posicion_inicial" id="posicion_inicial" value="0.00"> Rapidez inicial
+                <input type="text" class="form-control" name="rapidez_inicial" id="rapidez_inicial_pro" value="50.00"> Radio
+                <input type="text" class="form-control" name="radio" id="radio" value="3.66" disabled> Coeficiente de resistencia:
+                <input type="text" class="form-control" name="coeficiente" id="coeficiente_pro" value="0.5"> Masa:
+                <input type="text" class="form-control" name="masa" id="masa_pro" value="0.145"> Ángulo de lanzamiento:
+                <input type="text" class="form-control" name="angulo" id="angulo" value="20.0"> Densidad del aire:
+                <input type="text" class="form-control" name="densidad_aire" id="densidad_aire_pro" value="1.20">
 
-    <br>
+                <label>
+                    <input type="radio" name="rozamiento" id="con_rozamiento" value="true"> Con rozamiento
+                </label>
+                <label>
+                    <input type="radio" name="rozamiento" id="sin_rozamiento" value="false"> Sin rozamiento
+                </label>
+                <br>
+                <button type="submit" class="btn btn-primary" id="calcular_proyectil">Calcular</button>
+        </form>
 
-    <div>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>t</th>
-                    <th>v</th>
-                    <th>a</th>
-                    <th>p</th>
-                    <th>Fd</th>
-                </tr>
-            </thead>
-            <tbody id="resultados">
-            </tbody>
-        </table>
+        <br>
+        <br>
 
+        <div class="row">
+            <div class="col-md-3">
+                <p>Sin resistencia</p>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>x</th>
+                            <th>y</th>
+                        </tr>
+                    </thead>
+                    <tbody id="xvy_sin">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-3">
+                <p>Con resistencia</p>
+             <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>x</th>
+                            <th>y</th>
+                        </tr>
+                    </thead>
+                    <tbody id="xvy_con">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-md-3">
+                <p>Fuerza de arrastre</p>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>t</th>
+                            <th>f</th>
+                            <th>fx</th>
+                            <th>fy</th>
+                        </tr>
+                    </thead>
+                    <tbody id="fvt_proy">
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <form>
-        <div class="form-group">
-            Posicion inicial:
-            <input type="text" class="form-control" name="posicion_inicial" id="posicion_inicial" value="0.00">
-
-            Rapidez inicial
-            <input type="text" class="form-control" name="rapidez_inicial" id="rapidez_inicial_pro" value="50.00">
-
-            Radio
-            <input type="text" class="form-control" name="radio" id="radio" value="3.66" disabled>
-
-            Coeficiente de resistencia:
-            <input type="text" class="form-control" name="coeficiente" id="coeficiente_pro" value ="0.5">
-
-            Masa:
-            <input type="text" class="form-control" name="masa" id="masa_pro" value="0.145">
-
-            Ángulo de lanzamiento:
-            <input type="text" class="form-control" name="angulo" id="angulo" value="20.0">
-
-            Densidad del aire:
-            <input type="text" class="form-control" name="densidad_aire" id="densidad_aire_pro" value="1.20">
-
-            <label>
-                <input type="radio" name="rozamiento" id="con_rozamiento" value="true"> Con rozamiento
-            </label>
-            <label>
-                <input type="radio" name="rozamiento" id="sin_rozamiento" value="false"> Sin rozamiento
-            </label>
-            <br>
-            <button type="submit" class="btn btn-primary" id="calcular_proyectil">Calcular</button>
-    </form>
-
-    <br>
-    <br>
-
-    <div>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>t</th>
-                        <th>posX</th>
-                        <th>posY</th>
-                    </tr>
-                </thead>
-                <tbody id="resultados2">
-                </tbody>
-            </table>
-
-        </div>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="index.js">
-</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="index.js">
+    </script>
 </body>
+
 </html>
